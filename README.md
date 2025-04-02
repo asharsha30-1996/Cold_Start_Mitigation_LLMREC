@@ -1,15 +1,15 @@
 
 # LLM-Driven Cold Start Recommendation System
 
-This project presents a performance-optimized recommendation framework leveraging small-scale Large Language Models (≤ 7B parameters) like **Mistral-7B** to address the **cold start problem** in recommendation systems.
+Our ultimate goal in this project is to leverage the reasoning and conversational capability of LLMs to tackle cold start problems in recommendation system
 
-## 🚀 Key Highlights
+## 🚀 What is our initial plan?
 - **Cold Start Focus**: Tailored for scenarios with minimal or no user-item interaction.
 - **Tree-Based Retrieval**: Dynamic hierarchical item tree built using semantic similarity to improve recommendation efficiency.
 - **Hybrid Prompt Engineering**: Separates task prompts (general knowledge) from domain prompts (context-specific), enhancing adaptability.
 - **Lightweight Deployment**: Designed to be effective even in resource-constrained environments.
 
-## 📌 Current Progress
+## 📌 Where we are at now?
 
 We conducted a comparative analysis of four recommendation strategies to address the cold start problem:
 
@@ -51,10 +51,16 @@ We conducted a comparative analysis of four recommendation strategies to address
 | GR    | **0.077** | 0.041 | **0.101** |
 | CETE  | 0.030 | 0.043 | 0.042 |
 
+As expected, the tree based retrieval, graph retrieval and Simplified Bipartate Knowledge Graph performed better than Colloborative Filtering.
+Interestingly just a plain embedding by employing ms-marco-MiniLM-L6-v2 alone is not sufficient and hence compared to standalone BERT Embeddings or
+pre-trained LLM, we need to have a specialized model specifically well trained on the same domain.
+
 ### ❄️ Cold Start Mitigation Effectiveness
 
 - **New Users**: With a few ratings, the graph approach extracts genre preferences and finds semantically related items.
 - **New Items**: New movies can be recommended immediately using genre metadata—no rating history required.
+
+![Alt text for accessibility](Cold_Start_Rec.png)
 
 ### 🧪 Knowledge Graph Visualization
 We visualized how a genre-based graph enables recommendations for new users with only genre inputs.
