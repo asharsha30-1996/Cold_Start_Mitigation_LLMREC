@@ -1,0 +1,121 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
+
+\documentclass[11pt]{article}
+\usepackage[]{ACL2023}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+
+\title{LLM-Driven Cold Start Resolution for Recommendation Systems: A Performance-Optimized Approach}
+
+\author{Harshavardhana Srinivasana \\
+  Texas A\&M University\\
+  \texttt{asharsha30@tamu.edu} \\\And
+  Shashank Santosh Jagtap\\
+  Texas A\&M University\\
+  \texttt{shashankjagtap@tamu.edu} \\\And
+  Rucha Ravindra Gole \\
+  Texas A\&M  University\\
+  \texttt{ruchagole16@tamu.edu} \\}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The integration of Large Language Models (LLMs) has revolutionized recommendation systems, addressing critical challenges that traditional methods struggle with. This proposal outlines a performance-optimized recommendation framework using smaller LLMs (\(\leq\) 7B parameters)
+ specifically designed to tackle the cold start problem. By leveraging domain knowledge and recent advancements in prompt engineering, we aim to develop a lightweight yet effective solution which focuses on creating a tree-based hierarchical structure for efficient retrieval and employing refined prompt templates to enhance cold start recommendations without requiring extensive computational resources. 
+\end{abstract}
+
+\section{Introduction}
+
+Recommendation systems (RecSys) form the backbone of modern digital platforms, guiding users toward relevant content and products. Traditional approaches like collaborative filtering and content-based methods have dominated the field for years, but they consistently struggle with the cold start problem—providing meaningful recommendations when user-item interaction data is limited or nonexistent. This challenge significantly impacts user experience and platform growth.
+
+The emergence of Large Language Models (LLMs) has introduced new possibilities for addressing cold start scenarios. Unlike traditional methods that rely heavily on historical interaction data, LLMs can leverage their inherent knowledge of relationships between concepts, semantic understanding, and content features to make reasonable recommendations even without explicit interaction history. Recent research has demonstrated that LLMs can perform on par with traditional systems in certain scenarios, particularly for cold start recommendations \citep{zhang2025coldstartrecommendationeralarge}.
+
+However, deploying large-scale LLMs for recommendation tasks presents significant computational challenges, particularly in production environments where response time and resource efficiency are critical. Our objective is to develop a holistic, performance-optimized recommendation solution based on smaller LLMs \(\leq\)7B parameters, such as Mistral-7B) \citep{jiang2023mistral7b} that effectively addresses cold start scenarios by leveraging domain knowledge and efficient prompt engineering techniques.
+
+\section{Literature Review}
+
+“Cold-Start Recommendation towards the Era of Large Language Models” \citep{zhang2025coldstartrecommendationeralarge} categorizes cold-start challenges (normal, strict, and system cold-start) and identifies two key LLM integration approaches: using LLMs as recommenders through prompting/tuning, and employing them as knowledge enhancers for representation enrichment. The paper documents a paradigm shift from traditional content-based methods to LLM-driven strategies that leverage world knowledge for cold-start resolution.  
+
+LLMTreeRec represents significant advancement, structuring items into a tree to improve retrieval efficiency for LLMs \citep{zhang2024llmtreerecunleashingpowerlarge}.This approach achieved state-of-the-art performance under system cold-start conditions and was successfully deployed in industrial settings with positive A/B test results. 
+
+A-LLMRec \citep{kim2024largelanguagemodelsmeet} addresses cold start problem by aligning collaborative filtering knowledge with LLM capabilities without requiring fine-tuning of either component. The system projects pre-trained recommender embeddings into LLM token space, effectively leveraging both collaborative patterns and textual information to excel in cold scenarios. For items lacking interaction history, A-LLMRec employs a text encoder capturing implicit collaborative knowledge, outperforming traditional approaches while being 2.53 times faster to train than competing LLM-based methods. 
+
+\section{Novelty and Challenges}
+
+Our approach introduces several novel elements while acknowledging key challenges:
+
+\subsection{Novelty}
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item Focusing specifically on optimizing smaller LLMs (\(\leq\)7B parameters) for cold start recommendation, making the solution more deployable in resource-constrained environments.
+    \item Creating an adaptive item tree structure that dynamically adjusts based on semantic similarity to improve retrieval efficiency.
+    \item Developing a hybrid prompt decomposition method that separates domain-specific knowledge from general recommendation tasks, allowing for more efficient tuning and transfer across domains.
+\end{itemize}
+
+\subsection{Challenges}
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}   
+    \item Balancing computational efficiency with recommendation quality.
+    \item Ensuring the smaller LLM maintains sufficient knowledge to make meaningful recommendations.
+    \item Developing effective evaluation methods that accurately reflect real-world performance.
+\end{itemize}
+
+\section{Proposed Approach}
+
+We propose developing a performance-optimized recommendation system based on the Mistral-7B model, which offers an excellent balance of efficiency and capability for our cold start resolution task.
+
+\subsection{Dataset Selection}
+
+The MovieLens \citep{harper2015movielens} dataset collection represents one of the most widely used benchmarks in recommendation system research, particularly for cold-start scenarios. These datasets are collected and maintained by GroupLens Research and come in various sizes to accommodate different research needs. 
+
+\subsection{Model Architecture Approach}
+
+Our system will consist of four key components:
+
+\begin{itemize}
+    \item \textbf{Item Tree Construction Module:} Creates a hierarchical structure of items based on semantic similarity. Reduces the search space for recommendations, improving efficiency. Leverages pre-computed embeddings to minimize runtime computation.
+    \item \textbf{Prompt Template Engine:} Implements a decomposed prompt strategy with separate task and domain components. Task prompts capture general recommendation knowledge and transfer across domains. Domain prompts encode specific characteristics of items in the target domain.
+    \item \textbf{User Profiling Component:} Converts sparse user data into natural language descriptions. Enables cold start recommendations based on minimal user information. Incorporates any available preferences into a coherent user profile.
+    \item \textbf{Inference Optimization Layer:} Implements caching mechanisms for frequent queries. Utilizes quantization techniques to reduce model size and inference time. Employs batch processing where appropriate to maximize throughput.
+\end{itemize}
+
+\section{Evaluation Plan}
+
+We will evaluate our system using a comprehensive approach that addresses both recommendation quality and computational efficiency:
+
+\subsection{Recommendation Quality Metrics}
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item Recall@K and NDCG@K (for K=10, 20) to measure ranking quality.
+    \item Coverage of cold items to assess cold start resolution effectiveness.
+    \item Diversity measures to ensure varied recommendations.
+\end{itemize}
+
+\subsection{Baseline Comparisons}
+
+We will compare our approach against:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item Traditional collaborative filtering approaches.
+    \item Content-based recommendation methods.
+    \item Zero-shot recommendation with larger LLMs.
+\end{itemize}
+
+This evaluation approach will provide a comprehensive assessment of our system's effectiveness at resolving cold start issues while maintaining computational efficiency.
+
+\bibliography{custom}
+\bibliographystyle{acl_natbib}
+
+\end{document}
