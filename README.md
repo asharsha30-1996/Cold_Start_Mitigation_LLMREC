@@ -75,3 +75,9 @@ We visualized how a genre-based graph enables recommendations for new users with
 - 🌳 **Graph-RAG Integration**: Enhance the graph method with LLM-based retrieval-augmented generation (RAG) for conversational recommendations.
 - 📚 **Knowledge Distillation**: Leverage advanced prompt tuning and hybrid strategies combining domain knowledge with graph context.
 - ⚡ **Dynamic Retrieval Optimization**: Improve the tree structure to adapt in real-time to evolving semantic relationships.
+
+## References:
+
+1. https://www.youtube.com/watch?v=JZi1hjB9C9g - Knowledge Graph Recommendation Systems for COVID 19
+2. https://github.com/vatsalsaglani/GraphRAG4Rec - GraphRAG for Recommendation Demo
+3. https://github.com/nancheng58/Awesome-LLM4RS-Papers - Contains a list of high quality research papers in the domain of LLMRec
