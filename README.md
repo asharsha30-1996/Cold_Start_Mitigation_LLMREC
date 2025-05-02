@@ -35,6 +35,12 @@ We conducted a comparative analysis of four recommendation strategies to address
   2. **Cross-encoder model** for semantic reranking using user-item pairs.
 - Efficient but **underperforms** without domain knowledge or LLM integration.
 
+### Code Base Structure:
+- /ml-100k contains all the data from Movie Lens 100k Dataset
+- `1_Colloborative Filtering+Knowledge_Graph+Graph_Retrieval+Sentence_Transformer.ipynb` : It has the CF, KG, Graph Retrieval and BERT model codes
+- `2_Graph_Retreival_Visualization.ipynb`: It contains some visualization scripts
+- `3_NLP_Project_RecSys_LLMKG+GraphRetrieval.ipynb`: This is where our new LLM+KG models are developed along with comparison with baseline models
+
 ### 📊 Model Performance
 
 | Model | P@5 | R@5 | N@5 |
@@ -81,3 +87,10 @@ We visualized how a genre-based graph enables recommendations for new users with
 1. https://www.youtube.com/watch?v=JZi1hjB9C9g - Knowledge Graph Recommendation Systems for COVID 19
 2. https://github.com/vatsalsaglani/GraphRAG4Rec - GraphRAG for Recommendation Demo
 3. https://github.com/nancheng58/Awesome-LLM4RS-Papers - Contains a list of high quality research papers in the domain of LLMRec
+
+
+### NOTES FOR SETUP:
+
+1. We have run all these codes on Google Colab
+2. Hence, the ml-100k should be setup in respective folder and its path should be set for all the codes
+3. In the main() for `3_NLP_Project_RecSys_LLMKG+GraphRetrieval.ipynb`- the path changes for data and OPENAI API key would be required
