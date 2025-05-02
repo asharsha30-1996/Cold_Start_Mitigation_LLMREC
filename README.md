@@ -43,19 +43,24 @@ We conducted a comparative analysis of four recommendation strategies to address
 
 ### 📊 Model Performance
 
-| Model | P@5 | R@5 | N@5 |
-|-------|-----|-----|-----|
+| Model | P@5   | R@5   | N@5   |
+|-------|-------|-------|-------|
 | CF    | 0.012 | 0.006 | 0.011 |
-| KG    | 0.055 | 0.030 | 0.063 |
-| GR    | **0.098** | 0.026 | **0.114** |
+| KG    | 0.055 | 0.031 | 0.063 |
+| GR    | 0.098 | 0.027 | 0.114 |
 | CETE  | 0.034 | 0.022 | 0.038 |
+| LLM+Graph (Local/DistilGPT2) | 0.118 | 0.037 | 0.129 |
+| LLM+Graph (OpenAI API) | **0.122** | **0.037** | **0.139** |
 
-| Model | P@10 | R@10 | N@10 |
-|-------|------|------|------|
-| CF    | 0.013 | 0.014 | 0.015 |
-| KG    | 0.046 | 0.049 | 0.062 |
-| GR    | **0.077** | 0.041 | **0.101** |
+| Model | P@10  | R@10  | N@10  |
+|-------|-------|-------|-------|
+| CF    | 0.014 | 0.014 | 0.015 |
+| KG    | 0.047 | 0.050 | 0.062 |
+| GR    | 0.077 | 0.041 | 0.100 |
 | CETE  | 0.030 | 0.043 | 0.042 |
+| LLM+Graph (Local/DistilGPT2) | 0.096 | **0.057** | 0.118 |
+| LLM+Graph (OpenAI API) | **0.106** | 0.057 | **0.131** |
+
 
 As expected, the tree based retrieval, graph retrieval and Simplified Bipartate Knowledge Graph performed better than Colloborative Filtering.
 Interestingly just a plain embedding by employing ms-marco-MiniLM-L6-v2 alone is not sufficient and hence compared to standalone BERT Embeddings or
